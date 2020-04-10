@@ -2,7 +2,7 @@ import React from 'react';
 
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import { Link, useParams } from 'react-router-dom';
+import Link from '@material-ui/core/Link';
 import { Button } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import { addToDatabaseCart, getDatabaseCart } from '../../utilities/databaseManager';
@@ -13,7 +13,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { useState } from 'react';
-
 
 const AppointmentItem = (props) => {
     
@@ -32,15 +31,33 @@ const AppointmentItem = (props) => {
   const { register, handleSubmit, errors } = useForm();
   const [shipInfo, setShipInfo] = useState(null);
   const onSubmit = data => {
-    setShipInfo(data)
-     }
-   const  orderDetails = {       
-        Service: props.AppointmentItems,
-        contact: shipInfo,
-        
-    };
     
-    console.log( "final order", orderDetails);
+    setShipInfo(data)
+    const  orderDetails = {       
+      Service: props.AppointmentItems,
+      contact: data,
+     
+  };
+  console.log( "final order", orderDetails);
+    fetch('https://guarded-sierra-66334.herokuapp.com/placeOrder', {
+      method: 'POST',
+      body: JSON.stringify(orderDetails),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    })
+    .then(response => response.json())
+    .then(order => {
+       console.log('order Placed')
+      
+        
+      });
+
+     }
+
+    //addToDatabaseCart(orderDetails,1)
+    
+   
   return (
       
             <Grid textAlign="center"  item xs={4} >
@@ -88,7 +105,7 @@ const AppointmentItem = (props) => {
             }
             </DialogContentText>
             <DialogContentText>
-            <input name="Phone Number" ref={register({ required: true })} placeholder="Phone Number" />
+            <input name="PhoneNumber" ref={register({ required: true })} placeholder="PhoneNumber" />
             {
                 errors.city && <span className="error">Phone Number is required</span>
             }</DialogContentText>
@@ -97,9 +114,9 @@ const AppointmentItem = (props) => {
             {
                 errors.country && <span className="error">Email is required</span>
             }</DialogContentText>
-          
+            <Button  variant="contained">
             <input type="submit" />
-            
+            </Button>
         </form>
         <br/>
                         {
@@ -113,9 +130,11 @@ const AppointmentItem = (props) => {
                         <Button onClick={handleClose} color="primary">
                         Cancel
                         </Button>
-                        {/* <Button onClick={handleClose} color="primary">
-                        Subscribe
-                        </Button> */}
+                        <Link href="/login">
+                        <Button  variant="contained" onClick={handleClose} color="primary">
+                            Ok
+                        </Button>
+                        </Link>
                     </DialogActions>
                     </Dialog>
              </Box>

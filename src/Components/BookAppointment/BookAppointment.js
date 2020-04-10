@@ -9,7 +9,7 @@ import 'react-calendar/dist/Calendar.css';
 //import Cart from '../Cart/Cart';
 //import { Link } from 'react-router-dom';
 import { addToDatabaseCart, getDatabaseCart } from '../../utilities/databaseManager';
-import { useParams } from 'react-router-dom';
+
 import { useDate } from '../DatePicker/DatePicker';
 
 
@@ -39,23 +39,6 @@ const BookAppointment = () => {
         //const toBeAddedKey = AppointmentItems.key;
        console.log("AppointmentItem add",AppointmentItems);
        
-        // const sameAppointmentItem = cart.find(pd => pd.key === toBeAddedKey);
-        // let count = 1;
-        // let newCart;
-        // if (sameAppointmentItem) {
-        //      count = sameAppointmentItem.quantity +1;
-        //     sameAppointmentItem.quantity = count;
-        //     const others = cart.filter(pd =>pd.key !==toBeAddedKey)
-        //     newCart = [...others,sameAppointmentItem];
-        // }
-        // else{
-        //     AppointmentItems.quantity = 1;
-        //     newCart = [...cart, AppointmentItems];
-        // }
-        
-        // setCart(newCart);
-        
-        // addToDatabaseCart(AppointmentItems.key, count)
 
      }
   

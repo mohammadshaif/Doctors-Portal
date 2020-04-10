@@ -10,6 +10,7 @@ import {
   Link
 } from "react-router-dom";
 import Login from './Components/Login/Login';
+import DetailsApp from './Components/DetailsApp/DetailsApp';
 
 
 //export const userContext = createContext();
@@ -20,6 +21,7 @@ function App() {
       {/* <BookAppointment></BookAppointment>
       <PopUp></PopUp> */}
       <DateContextProvider>
+        
       <Router>
           <Switch>
           <Route exact path='/'>
@@ -31,8 +33,11 @@ function App() {
             <Route path='/bookApp'>
               <BookAppointment></BookAppointment>
             </Route>
-            <Route path='/detailsApp'>
-                <DatePicker></DatePicker>
+            <Route path='/details'>
+                <DetailsApp></DetailsApp>
+            </Route>
+            <Route path='/login'>
+                <Login></Login>
             </Route>
             
           </Switch>

@@ -6,6 +6,7 @@ import { Box, Link } from "@material-ui/core";
 
 
 
+
 const DateContext = createContext();
  export const DateContextProvider = (props)=>{
   const Date = DatePicker();
@@ -20,10 +21,12 @@ const getDate = date=>{
 const DatePicker = () => {
     const [date, setDate] = useState(new Date());
    const [time, setTime]=useState(null)
+   
     // console.log("time date",new Date());
     const onChange = (date) => {
       setTime(date)
        setDate(date);
+       
     console.log(date);
      
     };

@@ -15,6 +15,13 @@ const Login = () => {
             </Button>
             </Link>
             </Box>
+            <Box m={20} >
+            <Link href="/details">
+            <Button variant="contained" color="primary">
+            Patient Details
+            </Button>
+            </Link>
+            </Box>
         </Grid>
         
     );
